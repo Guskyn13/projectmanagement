@@ -1,5 +1,3 @@
-const { projects, clients } = require('../sampleData')
-
 const Project = require('../models/Project');
 const Client = require('../models/Client');
 
@@ -70,6 +68,20 @@ const RootQuery = new GraphQLObjectType({
     },
 });
 
+// Mutations
+const mutation = new GraphQLObjectType({
+    name: 'Mutation',
+    fields: {
+        addClient: {
+            type: ClientType,
+            args: {
+                name: { type: GraphQLString },
+            }
+        }
+    }
+})
+
 module.exports = new GraphQLSchema({
-    query: RootQuery
+    query: RootQuery,
+    mutation
 })
